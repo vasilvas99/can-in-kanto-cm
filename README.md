@@ -82,7 +82,7 @@ Kernel modules `vxcan` and `can-gw` required and included in the Leda-distro by 
 4) Uses `can-gw` to route all traffic from and to can0 to vxcan0. 
 
 
-5) Being able to run `cangen can0` in **QT** and read the output from **CT** with `candump vxcan0` (and the other way around) proves that the setup was successful. 
+5) Being able to run `cangen can0` in **QT** and read the output from **CT** with `candump vxcan1` (and the other way around) proves that the setup was successful. 
 
 6) The ` .host_config.privileged` property was set to `false` in the container manifest, so this proves that the container does not need elevated privileges to read the `can0` traffic when using this procedure.
 
@@ -95,11 +95,15 @@ If you start the Leda distro image with QEMU-host-guest can0 routing with the co
 $ kas shell kas/leda-qemux86-64.yaml -c 'runqemu slirp qemuparams="-object can-host-socketcan,id=canhost0,if=can0,canbus=canbus0" nographic ovmf sdv-image-all'
 ```
 
-This would allow you to run `cangen can0` on the **QEMU HOST** and read it from the ubuntu container inside the **QEMU GUEST** with `cangen vxcan0`
+This would allow you to run `cangen can0` on the **QEMU HOST** and read it from the ubuntu container inside the **QEMU GUEST** with `candump vxcan1`
 
 
 
 # Limitations of the approach
 
+- The current procedure is quite manual
 
+- The container has to be already started to obtain a PID and move the `vxcan1` peer interface into its namespace. This can be a problem as the container entrypoint might be ran before the `vxcan1` is moved and thus fail if it expects a can interfaces to be available on startup. (TODO: check if hard-coding the PID in the manifest is possible/feasible)
+
+- Ideally this should be a kanto-cm plugin/feature.
 
