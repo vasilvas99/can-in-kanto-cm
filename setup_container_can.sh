@@ -8,7 +8,7 @@ set -e
 CONTNAME=$1
 CONTPID=$(kanto-cm -n $CONTNAME get | jq " .state.pid") 
 
-# setup to virtual linked cans vxcan0 and vxcan1
+# setup two virtual linked cans vxcan0 and vxcan1
 ip link add vxcan0 type vxcan peer name vxcan1
 
 # send vxcan1 to the container namespace
