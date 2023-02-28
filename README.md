@@ -103,7 +103,7 @@ This would allow you to run `cangen can0` on the **QEMU HOST** and read it from 
 
 - The current procedure is quite manual
 
-- The container has to be already started to obtain a PID and move the `vxcan1` peer interface into its namespace. This can be a problem as the container entrypoint might be ran before the `vxcan1` is moved and thus fail if it expects a can interfaces to be available on startup. (TODO: check if hard-coding the PID in the manifest is possible/feasible)
+- The container has to be already started to obtain a PID and move the `vxcan1` peer interface into its namespace. This can be a problem as the container entrypoint might be ran before the `vxcan1` is moved and thus fail if it expects a can interface to be available on startup. (TODO: check if hard-coding the PID in the manifest is possible/feasible)
 
-- Ideally this should be a kanto-cm plugin/feature.
+- Ideally this should be a kanto-cm plugin/feature and kanto-cm will set-up the virutal can interface before running the entrypoint (much like the virtual ethernet adapters it now uses)
 
