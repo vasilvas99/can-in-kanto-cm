@@ -13,6 +13,10 @@ Based on [_Forwarding CAN Bus traffic to a Docker container using vxcan on Raspb
 
 2) Take the `ubuntu_ctr.json` provided here and put it in `/data/var/containers/manifests_dev`. 
 
+   ```shell
+      $ wget -P /data/var/containers/manifests_dev https://raw.githubusercontent.com/vasilvas99/can-in-kanto-cm/main/ubunt_ctr.json
+   ```
+
     *Note:* This is an otherwise basic manifest, the only special options that are set are:
 
     ```json
@@ -56,7 +60,8 @@ Based on [_Forwarding CAN Bus traffic to a Docker container using vxcan on Raspb
 
 8) In **QT** copy the `setup_container_can.sh` script from this repository in your home directory and run:
     ```shell
-    $ cd ~
+    $ wget -P $HOME https://raw.githubusercontent.com/vasilvas99/can-in-kanto-cm/main/setup_container_can.sh
+    $ cd $HOME
     $ chmod +x ./setup_container_can.sh
     $ ./setup_container_can.sh ubuntu
     ```
