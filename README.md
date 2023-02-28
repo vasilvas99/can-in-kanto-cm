@@ -54,7 +54,7 @@ Based on [_Forwarding CAN Bus traffic to a Docker container using vxcan on Raspb
 
 7) Open another terminal to the Leda QEMU image (e.g. use `ssh -p 2222 root@127.0.0.1`). (Shortened as **QT** from now on)
 
-8) In **QT** copy the `setup_container_can.sh` script in your home directory and run:
+8) In **QT** copy the `setup_container_can.sh` script in this repository in your home directory and run:
     ```shell
     $ cd ~
     $ chmod +x ./setup_container_can.sh
